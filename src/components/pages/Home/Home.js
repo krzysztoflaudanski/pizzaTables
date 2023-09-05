@@ -1,9 +1,11 @@
 import { Container } from "react-bootstrap"
+import AllTables from "../../features/AllTables/AllTables"
 
 const Home = () => {
     return (
         <Container>
-            Home
+            <h1>All Tables</h1>
+            <AllTables />
         </Container>
     )
 }

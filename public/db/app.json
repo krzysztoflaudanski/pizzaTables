@@ -1,39 +1,82 @@
 {
-    "tables": [
-        {
-            "id": 1,
-            "status" : "busy",
-            "people" : 1,
-            "max-people": 2,
-            "bill": 15
-        },
-        {
-            "id": 2,
-            "status" : "free",
-            "people" : 1,
-            "max-people": 2,
-            "bill": 15
-        },
-        {
-            "id": 3,
-            "status" : "reserved",
-            "people" : 1,
-            "max-people": 2,
-            "bill": 15
-        },
-        {
-            "id": 4,
-            "status" : "cleaning",
-            "people" : 1,
-            "max-people": 2,
-            "bill": 15
-        },
-        {
-            "id": 5,
-            "status" : "busy",
-            "people" : 1,
-            "max-people": 2,
-            "bill": 15
-        }
-    ]
+  "tables": [
+    {
+      "id": "1",
+      "number": "1",
+      "status": "busy",
+      "people": 1,
+      "maxPeople": 2,
+      "bill": 15
+    },
+    {
+      "id": "2",
+      "number": "2",
+      "status": "free",
+      "people": 1,
+      "maxPeople": 2,
+      "bill": 15
+    },
+    {
+      "id": "3",
+      "number": "3",
+      "status": "reserved",
+      "people": 1,
+      "maxPeople": 2,
+      "bill": 15
+    },
+    {
+      "id": "4",
+      "number": "4",
+      "status": "cleaning",
+      "people": 1,
+      "maxPeople": 2,
+      "bill": 15
+    },
+    {
+      "id": "5",
+      "number": "5",
+      "status": "busy",
+      "people": 1,
+      "maxPeople": 2,
+      "bill": 15
+    },
+    {
+      "number": "19",
+      "status": "busy",
+      "people": "",
+      "maxPeople": "",
+      "bill": "",
+      "id": "th4Kb58"
+    },
+    {
+      "number": "1",
+      "status": "",
+      "people": "4",
+      "maxPeople": "",
+      "bill": "",
+      "id": "qsQS_nM"
+    },
+    {
+      "number": "",
+      "status": "",
+      "people": "3",
+      "maxPeople": "",
+      "bill": "",
+      "id": "EADHGId"
+    },
+    {
+      "number": "",
+      "status": "",
+      "people": "2",
+      "maxPeople": "",
+      "bill": "",
+      "id": "KUM9zKe"
+    }
+  ],
+  "status": [
+    "busy",
+    "free",
+    "reserved",
+    "cleaning"
+  ]
 }
