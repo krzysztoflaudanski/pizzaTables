@@ -41,78 +41,12 @@
       "bill": 10
     },
     {
-      "number": "6",
-      "status": "busy",
+      "number": "",
+      "status": "",
       "people": "0",
       "maxPeople": "0",
-      "bill": "0",
-      "id": "Z2Nlh9x"
-    },
-    {
-      "number": "5562",
-      "status": "cleaning",
-      "people": "0",
-      "maxPeople": "",
-      "bill": "0",
-      "tableId": "1",
-      "id": "02MB6Y1"
-    },
-    {
-      "number": "",
-      "status": "busy",
-      "people": 1,
-      "maxPeople": 2,
-      "bill": 15,
-      "tableId": "1",
-      "id": "n5xOePn"
-    },
-    {
-      "number": "",
-      "status": "busy",
-      "people": 1,
-      "maxPeople": "5",
-      "bill": 15,
-      "tableId": "1",
-      "id": "B3ZaHCv"
-    },
-    {
-      "number": "",
-      "status": "busy",
-      "people": 1,
-      "maxPeople": "5",
-      "bill": 15,
-      "tableId": "1",
-      "id": "KAnp2Eo"
-    },
-    {
-      "number": "",
-      "status": "busy",
-      "people": 1,
-      "maxPeople": "6",
-      "bill": 15,
-      "tableId": "1",
-      "id": "QHHsjDi"
-    },
-    {
-      "number": "",
-      "status": "busy",
-      "people": 1,
-      "maxPeople": "6",
-      "bill": 15,
-      "tableId": "1",
-      "id": "txquIYs"
-    },
-    {
-      "table": {
-        "id": "1",
-        "number": "1",
-        "status": "busy",
-        "people": 1,
-        "maxPeople": 2,
-        "bill": 15
-      },
-      "tableId": "1",
-      "id": "JzF1IKf"
+      "bill": "",
+      "id": "qJeGPZe"
     },
     {
       "number": "",
@@ -120,7 +54,7 @@
       "people": "0",
       "maxPeople": "0",
       "bill": "",
-      "id": "R3m3dR5"
+      "id": "MUdWszW"
     }
   ],
   "status": [

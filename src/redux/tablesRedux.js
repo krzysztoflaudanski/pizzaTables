@@ -39,7 +39,7 @@ export const addTableRequest = (newTable) => {
 }
 
 export const editTableRequest = (number, status, people, maxPeople, bill, tableId) => {
-  //console.log(tableId)
+  console.log(number)
   return(dispatch) => {
     const options = {
       method: 'POST',

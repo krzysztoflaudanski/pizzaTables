@@ -4,13 +4,14 @@ import Stack from 'react-bootstrap/Stack';
 import { useSelector } from 'react-redux';
 import { getAllTables } from '../../../redux/tablesRedux';
 import { NavLink } from 'react-router-dom';
-
+import Loader from '../../views/Loader/Loader';
 
 const AllTables = () => {
-
     const tables = useSelector(getAllTables);
-
+   
     return (
+        <>
+        {tables.length < 1 && <Loader />}
         <section>{tables.map(table => (
             <div key={table.id} action={table.status}>
                 <Stack direction="horizontal" gap={3} >
@@ -30,6 +31,7 @@ const AllTables = () => {
             </div>
         ))}
         </section>
+        </>
     )
 }
 

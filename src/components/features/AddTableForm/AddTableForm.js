@@ -22,11 +22,6 @@ const AddTableForm = () => {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(addTableRequest({ number, status, people, maxPeople, bill }))
-        setNumber('');
-        setStatus('');
-        setPeople('')
-        setMaxPeople('')
-        setBill('')
         navigate('/')
     }
 
