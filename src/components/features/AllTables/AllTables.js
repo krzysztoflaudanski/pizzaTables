@@ -12,7 +12,7 @@ const AllTables = () => {
 
     return (
         <section>{tables.map(table => (
-            <div key={table.id} >
+            <div key={table.id} action={table.status}>
                 <Stack direction="horizontal" gap={3} >
                     <Card border="light">
                         <Stack direction="horizontal" gap={3}>
@@ -23,7 +23,7 @@ const AllTables = () => {
                     </Card>
                     <Button variant="primary" className="p-2 ms-auto" >Delete table</Button>
                     <NavLink to={"table/" + table.id}>
-                        <Button variant="primary" className="p-2 ">Show More</Button>
+                        <Button variant="primary" className="p-2">Show More</Button>
                     </NavLink>
                 </Stack>
                 <hr />

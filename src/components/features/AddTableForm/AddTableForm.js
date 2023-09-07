@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { addTableRequest } from "../../../redux/tablesRedux";
 import Stack from 'react-bootstrap/Stack';
-import { maxPeopleControl, maxPeopleControl2 } from "../../../utils/maxPeopleControl";
 import { getAllStatus } from "../../../redux/statusRedux";
 
 
@@ -12,7 +11,6 @@ const AddTableForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const statusOptions = useSelector(getAllStatus)
-
 
     const [number, setNumber] = useState('');
     const [status, setStatus] = useState('');
@@ -52,9 +50,8 @@ const AddTableForm = () => {
         setPeople('0')
         if (e === statusOptions[0])
         setShowBill(true);
+        setBill('0')
     }
-
-
 
     return (
         <Form onSubmit={handleSubmit}>
