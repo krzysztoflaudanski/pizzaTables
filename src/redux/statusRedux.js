@@ -1,4 +1,4 @@
-export const getAllStatus = ({status}) => status;
+export const getAllStatus = ({ status }) => status;
 
 const createActionName = actionName => `app/tables/${actionName}`;
 const UPDATE_STATUS = createActionName('UPDATE_STATUS');
@@ -6,19 +6,19 @@ const UPDATE_STATUS = createActionName('UPDATE_STATUS');
 export const updateStatus = payload => ({ type: UPDATE_STATUS, payload });
 
 export const fetchStatus = () => {
-    return (dispatch) => {
-      fetch('http://localhost:3131/status')
-        .then(res => res.json())
-        .then(status => dispatch(updateStatus(status)))
-    }
-  };
+  return (dispatch) => {
+    fetch('http://localhost:3131/status')
+      .then(res => res.json())
+      .then(status => dispatch(updateStatus(status)))
+  }
+};
 
-  const statusReducer = (statePart = [], action) => {
-    switch (action.type) {
-      case UPDATE_STATUS:
-        return [...action.payload];
-      default:
-        return statePart;
-    };
+const statusReducer = (statePart = [], action) => {
+  switch (action.type) {
+    case UPDATE_STATUS:
+      return [...action.payload];
+    default:
+      return statePart;
   };
-  export default statusReducer;
+};
+export default statusReducer;

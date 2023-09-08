@@ -42,9 +42,9 @@ const AddTableForm = () => {
         setShowBill(false);
         setStatus(e);
         if (e === statusOptions[1] || e === statusOptions[3])
-        setPeople('0')
+            setPeople('0')
         if (e === statusOptions[0])
-        setShowBill(true);
+            setShowBill(true);
         setBill('0')
     }
 

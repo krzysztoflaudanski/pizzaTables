@@ -1,20 +1,19 @@
 import shortid from "shortid";
 
-//selectors
+export const getAllTables = ({ tables }) => tables;
+export const getTableById = ({ tables }, tableId) => tables.find(table => table.id === tableId)
 
-export const getAllTables = ({tables}) => tables; 
-export const getTableById = ({tables}, tableId) => tables.find(table => table.id === tableId)
 
-// actions
 const createActionName = actionName => `app/tables/${actionName}`;
 const UPDATE_TABLES = createActionName('UPDATE_TABLES');
 const ADD_TABLE = createActionName('ADD_TABLE');
 const EDIT_TABLE = createActionName('EDIT_TABLE')
+const REMOVE_TABLE = createActionName('REMOVE_TABLE');
 
-// action creators
 export const updateTables = payload => ({ type: UPDATE_TABLES, payload });
-export const addTable = payload => ({type: ADD_TABLE, payload});
-export const editTable = payload => ({type: EDIT_TABLE, payload});
+export const addTable = payload => ({ type: ADD_TABLE, payload });
+export const editTable = payload => ({ type: EDIT_TABLE, payload });
+export const removeTable = payload => ({ type: REMOVE_TABLE, payload });
 
 export const fetchTables = () => {
   return (dispatch) => {
@@ -25,7 +24,7 @@ export const fetchTables = () => {
 };
 
 export const addTableRequest = (newTable) => {
-  return(dispatch) => {
+  return (dispatch) => {
     const options = {
       method: 'POST',
       headers: {
@@ -34,22 +33,37 @@ export const addTableRequest = (newTable) => {
       body: JSON.stringify(newTable),
     };
     fetch('http://localhost:3131/tables', options)
-    .then(() => dispatch(addTable(newTable)))
+      .then(() => dispatch(addTable(newTable)))
   }
 }
 
 export const editTableRequest = (number, status, people, maxPeople, bill, tableId) => {
-  console.log(number)
-  return(dispatch) => {
+
+  return (dispatch) => {
     const options = {
-      method: 'POST',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(number, status, people, maxPeople, bill)
+      body: JSON.stringify({ number, status, people, maxPeople, bill })
     };
     fetch(('http://localhost:3131/tables/' + tableId), options)
       .then(() => dispatch(editTable(number, status, people, maxPeople, bill)))
+  }
+}
+
+export const removeTableRequest = (table) => {
+  console.log(table)
+  return (dispatch) => {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ table })
+    };
+    fetch(('http://localhost:3131/tables/' + table), options)
+      .then(() => dispatch(removeTable(table)))
   }
 }
 
@@ -57,10 +71,12 @@ const tablesReducer = (statePart = [], action) => {
   switch (action.type) {
     case UPDATE_TABLES:
       return [...action.payload];
-      case ADD_TABLE:
+    case ADD_TABLE:
       return [...statePart, { id: shortid(), ...action.payload }];
-      case EDIT_TABLE:
-      return statePart.map(table =>(table.id === action.payload.tableId ? {...table, ...action.payload} : table)); 
+    case EDIT_TABLE:
+      return statePart.map(table => (table.id === action.payload.tableId ? { ...table, ...action.payload } : table));
+    case REMOVE_TABLE:
+      return [...statePart.filter(table => table.id !== action.payload)];
     default:
       return statePart;
   };

@@ -1,20 +1,12 @@
 {
   "tables": [
     {
-      "id": "1",
-      "number": "1",
-      "status": "busy",
-      "people": 1,
-      "maxPeople": 2,
-      "bill": 15
-    },
-    {
       "id": "2",
       "number": "2",
-      "status": "free",
-      "people": 0,
-      "maxPeople": 2,
-      "bill": 0
+      "status": "busy",
+      "people": "0",
+      "maxPeople": "5",
+      "bill": "0"
     },
     {
       "id": "3",
@@ -41,20 +33,12 @@
       "bill": 10
     },
     {
-      "number": "",
-      "status": "",
-      "people": "0",
-      "maxPeople": "0",
-      "bill": "",
-      "id": "qJeGPZe"
-    },
-    {
-      "number": "",
-      "status": "",
-      "people": "0",
-      "maxPeople": "0",
-      "bill": "",
-      "id": "MUdWszW"
+      "number": "6",
+      "status": "busy",
+      "people": "3",
+      "maxPeople": "3",
+      "bill": "2",
+      "id": "YbQTdeJ"
     }
   ],
   "status": [

@@ -1,5 +1,5 @@
 import { Button, Form } from "react-bootstrap";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Navigate } from "react-router-dom";
 import Stack from 'react-bootstrap/Stack';
 import { useDispatch, useSelector } from "react-redux";
@@ -9,35 +9,37 @@ import { useParams } from "react-router-dom";
 import { getTableById } from "../../../redux/tablesRedux";
 
 const EditTableForm = () => {
-    
+
     const { tableId } = useParams();
     const table = useSelector(state => getTableById(state, tableId))
-
+    console.log(table)
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const statusOptions = useSelector(getAllStatus)
 
-    const [number, setNumber] = useState(table.number);
-    const [status, setStatus] = useState(table.status);
-    const [people, setPeople] = useState(table.people);
-    const [maxPeople, setMaxPeople] = useState(table.maxPeople);
-    const [bill, setBill] = useState(table.bill);
+    const [number, setNumber] = useState('');
+    const [status, setStatus] = useState('');
+    const [people, setPeople] = useState('');
+    const [maxPeople, setMaxPeople] = useState('');
+    const [bill, setBill] = useState(1);
     const [showBill, setShowBill] = useState(false);
-    const [checkStatus, setCheckStatus] = useState(true);
 
-    const statusCheck = () => {
-        if(checkStatus) {
-            if (table.status === statusOptions[0])
-            setShowBill(true);
-            setCheckStatus(false);
+    useEffect(() => {
+        if (table) {
+            setNumber(table.number);
+            setStatus(table.status);
+            setPeople(table.people);
+            setMaxPeople(table.maxPeople);
+            setBill(table.bill);
+            if (table.status === statusOptions[0]) {
+            setShowBill(true)
+            }
         }
-    }
-     
-    statusCheck();
+    }, [table]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(editTableRequest({number, status, people, maxPeople, bill, tableId}))
+        dispatch(editTableRequest(number, status, people, maxPeople, bill, tableId))
         navigate('/')
     }
 
@@ -61,52 +63,48 @@ const EditTableForm = () => {
             setPeople('0')
         if (e === statusOptions[0])
             setShowBill(true);
-            setBill('0');
+        setBill('0');
     }
 
     if (!table) return <Navigate to="/" />
     return (
-        <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="number" style={{ width: '200px' }}>
-                <Stack Stack direction="horizontal" gap={3}>
-                    <Form.Label>Table&nbsp;number:</Form.Label>
-                    <Form.Control type="number" value={number} min="0" onChange={e => setNumber(e.target.value)}/>
-                </Stack>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="status" style={{ width: '300px' }}>
-                <Stack Stack direction="horizontal" gap={2}>
-                    <Form.Label>Status:</Form.Label>
-                    <Form.Select
-                        aria-label="Default select example" value={status} onChange={e => handleSetStatus(e.target.value)} >
-                        <option value=''>Select status...</option>
-                        {statusOptions.map(item =>
-                            <option key={item}>{item}</option>
-                        )}
-                    </Form.Select>
-                </Stack>
-            </Form.Group>
-            <Stack Stack direction="horizontal" gap={2}>
-                <Form.Group className="mb-3" controlId="people" style={{ width: '150px' }}>
+        <><h1>Table {number}</h1>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" controlId="status" style={{ width: '300px' }}>
                     <Stack Stack direction="horizontal" gap={2}>
-                        <Form.Label>People:</Form.Label>
-                        <Form.Control type="number" value={people} min="0" max="10" onChange={e => handlePeople(e.target.value)} />
+                        <Form.Label>Status:</Form.Label>
+                        <Form.Select
+                            aria-label="Default select example" value={status} onChange={e => handleSetStatus(e.target.value)} >
+                            <option value=''>Select status...</option>
+                            {statusOptions.map(item =>
+                                <option key={item}>{item}</option>
+                            )}
+                        </Form.Select>
                     </Stack>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="maxPeople" style={{ width: '120px' }}>
-                    <Stack Stack direction="horizontal" gap={2}>
-                        <Form.Label>/</Form.Label>
-                        <Form.Control type="number" value={maxPeople} min="0" max="10" onChange={e => handleMaxPeople(e.target.value)} />
-                    </Stack>
-                </Form.Group>
-            </Stack>
-            {showBill && <Form.Group className="mb-3" controlId="bill" style={{ width: '150px' }}>
                 <Stack Stack direction="horizontal" gap={2}>
-                    <Form.Label>Bill:&nbsp;$</Form.Label>
-                    <Form.Control type="number" value={bill} min="0" onChange={e => setBill(e.target.value)} />
+                    <Form.Group className="mb-3" controlId="people" style={{ width: '150px' }}>
+                        <Stack Stack direction="horizontal" gap={2}>
+                            <Form.Label>People:</Form.Label>
+                            <Form.Control type="number" value={people} min="0" max="10" onChange={e => handlePeople(e.target.value)} />
+                        </Stack>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="maxPeople" style={{ width: '120px' }}>
+                        <Stack Stack direction="horizontal" gap={2}>
+                            <Form.Label>/</Form.Label>
+                            <Form.Control type="number" value={maxPeople} min="0" max="10" onChange={e => handleMaxPeople(e.target.value)} />
+                        </Stack>
+                    </Form.Group>
                 </Stack>
-            </Form.Group>}
-            <Button type="submit">Edit Table</Button>
-        </Form>
+                {showBill && <Form.Group className="mb-3" controlId="bill" style={{ width: '150px' }}>
+                    <Stack Stack direction="horizontal" gap={2}>
+                        <Form.Label>Bill:&nbsp;$</Form.Label>
+                        <Form.Control type="number" value={bill} min="0" onChange={e => setBill(e.target.value)} />
+                    </Stack>
+                </Form.Group>}
+                <Button type="submit">Edit Table</Button>
+            </Form>
+        </>
     )
 }
 export default EditTableForm
