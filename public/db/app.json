@@ -39,14 +39,6 @@
       "people": 1,
       "maxPeople": 2,
       "bill": 15
-    },
-    {
-      "number": "9",
-      "status": "busy",
-      "people": "0",
-      "maxPeople": "0",
-      "bill": "1",
-      "id": "6iV9OeR"
     }
   ],
   "status": [
