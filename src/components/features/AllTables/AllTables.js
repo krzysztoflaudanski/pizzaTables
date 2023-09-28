@@ -15,6 +15,7 @@ const AllTables = () => {
         e.preventDefault()
         dispatch(removeTableRequest(e.target.value))
     }
+
     return (
         <>
             {(tables.length < 1) && <Loader />}
@@ -33,7 +34,6 @@ const AllTables = () => {
                             <Button variant="primary" className="p-2">Show More</Button>
                         </NavLink>
                     </Stack>
-
                     <hr />
                 </div>
             ))}

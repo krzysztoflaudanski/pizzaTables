@@ -11,8 +11,6 @@ import Footer from "./components/views/Footer/Footer";
 import AddTable from "./components/pages/AddTable/AddTable";
 import { fetchStatus } from "./redux/statusRedux";
 
-
-
 function App() {
   const dispatch = useDispatch();
 

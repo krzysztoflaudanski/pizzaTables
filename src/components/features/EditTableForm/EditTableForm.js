@@ -1,9 +1,9 @@
 import { Button, Form } from "react-bootstrap";
 import { useState, useEffect } from 'react';
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Stack from 'react-bootstrap/Stack';
 import { useDispatch, useSelector } from "react-redux";
-import { editTableRequest } from "../../../redux/tablesRedux";
+import { editTableRequest, getAllTables } from "../../../redux/tablesRedux";
 import { getAllStatus } from "../../../redux/statusRedux";
 import { useParams } from "react-router-dom";
 import { getTableById } from "../../../redux/tablesRedux";
@@ -12,7 +12,7 @@ const EditTableForm = () => {
 
     const { tableId } = useParams();
     const table = useSelector(state => getTableById(state, tableId))
-    console.log(table)
+    const tables = useSelector(getAllTables);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const statusOptions = useSelector(getAllStatus)
@@ -25,6 +25,15 @@ const EditTableForm = () => {
     const [showBill, setShowBill] = useState(false);
 
     useEffect(() => {
+        if (tables.length > 0) {
+            const availableTables = tables.some(table => table.id === tableId)
+            if (!availableTables) {
+                navigate('/')
+            }
+        }
+    }, [tables, tableId, navigate]);
+
+    useEffect(() => {
         if (table) {
             setNumber(table.number);
             setStatus(table.status);
@@ -32,10 +41,10 @@ const EditTableForm = () => {
             setMaxPeople(table.maxPeople);
             setBill(table.bill);
             if (table.status === statusOptions[0]) {
-            setShowBill(true)
+                setShowBill(true)
             }
         }
-    }, [table]);
+    }, [table, statusOptions]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -66,7 +75,6 @@ const EditTableForm = () => {
         setBill('0');
     }
 
-    if (!table) return <Navigate to="/" />
     return (
         <><h1>Table {number}</h1>
             <Form onSubmit={handleSubmit}>
