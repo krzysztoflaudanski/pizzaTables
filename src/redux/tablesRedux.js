@@ -47,7 +47,7 @@ export const editTableRequest = (number, status, people, maxPeople, bill, tableI
       body: JSON.stringify({ number, status, people, maxPeople, bill })
     };
     fetch((API_URL + '/tables/' + tableId), options)
-      .then(() => dispatch(editTable(number, status, people, maxPeople, bill)))
+      .then(() => dispatch(editTable({number, status, people, maxPeople, bill, tableId})))
   }
 }
 
