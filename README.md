@@ -1,1 +1,1 @@
-https://pizzatables-1.krzysztoflaudan.repl.co/
+https://pizzatables-2.krzysztoflaudan.repl.co/
